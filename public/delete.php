@@ -17,10 +17,10 @@ if (isset($_POST["submit"])) {
   
     $id = $_POST["submit"];
 
-    $sql = "DELETE FROM users WHERE id = :id";
+    $sql = "DELETE FROM users WHERE user_id = :user_id";
 
     $statement = $connection->prepare($sql);
-    $statement->bindValue(':id', $id);
+    $statement->bindValue(':user_id', $id);
     $statement->execute();
 
     $success = "<span class='badge badge-success'>User successfully deleted</span>";
@@ -68,7 +68,7 @@ try {
                 <?php foreach ($result as $row) : ?>
                 <tr>
                     <td>
-                        <?php echo escape($row["id"]); ?>
+                        <?php echo escape($row["user_id"]); ?>
                     </td>
                     <td>
                         <?php echo escape($row["firstname"]); ?>
@@ -88,7 +88,7 @@ try {
                     <td>
                         <?php echo escape($row["date"]); ?>
                     </td>
-                    <td><button type="submit" name="submit" class="btn btn-danger" value="<?php echo escape($row["id"]); ?>">Delete</button></td>
+                    <td><button type="submit" name="submit" class="btn btn-danger" value="<?php echo escape($row["user_id"]); ?>">Delete</button></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
